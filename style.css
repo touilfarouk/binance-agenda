@@ -1,0 +1,373 @@
+:root {
+  /* Dark theme (default) */
+  --primary-color: #f0b90b;
+  --background-dark: #1e2026;
+  --background-light: #2b2f36;
+  --text-primary: #eaecef;
+  --text-secondary: #848e9c;
+  --danger: #f6465d;
+  --success: #0ecb81;
+  --border-color: #363a45;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --primary-color: #f0b90b;
+  --background-dark: #ffffff;
+  --background-light: #f5f5f5;
+  --text-primary: #1e2026;
+  --text-secondary: #666666;
+  --danger: #dc3545;
+  --success: #28a745;
+  --border-color: #dee2e6;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+}
+
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Task Form */
+.task-form {
+  background: var(--background-light);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.input-group {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+button {
+  background: var(--background-dark);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+input[type="text"] {
+  flex: 1;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+select {
+  cursor: pointer;
+}
+
+button {
+  background: var(--primary-color);
+  color: var(--background-dark);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background: #dba50a;
+}
+
+/* Task List */
+.task-list {
+  list-style: none;
+}
+
+.task-item {
+  background: var(--background-light);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.task-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-text {
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.task-text.editable:focus {
+  outline: none;
+  background: var(--background-dark);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.task-metadata {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.priority {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.priority.high {
+  background: rgba(246, 70, 93, 0.2);
+  color: var(--danger);
+}
+
+.priority.medium {
+  background: rgba(240, 185, 11, 0.2);
+  color: var(--primary-color);
+}
+
+.priority.low {
+  background: rgba(14, 203, 129, 0.2);
+  color: var(--success);
+}
+
+.due-date {
+  color: var(--text-secondary);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.delete {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+
+.delete:hover {
+  background: var(--danger);
+  color: var(--text-primary);
+  border-color: var(--danger);
+}
+
+.empty-message {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 40px;
+  background: var(--background-light);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+/* Notifications */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  color: var(--text-primary);
+  background: var(--background-light);
+  border: 1px solid var(--border-color);
+  animation: slideIn 0.3s ease-out;
+  z-index: 1000;
+}
+
+.notification.success {
+  background: var(--success);
+  border-color: var(--success);
+}
+
+.notification.error {
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .input-group {
+    flex-direction: column;
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  select,
+  button {
+    width: 100%;
+  }
+  
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .task-metadata {
+    flex-wrap: wrap;
+  }
+  
+  .delete {
+    align-self: flex-end;
+  }
+}
+
+/* Add these new styles */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--primary-color);
+  color: var(--background-dark);
+  border-color: var(--primary-color);
+}
+
+/* Add smooth transition for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Add these RTL-specific styles */
+[dir="rtl"] .input-group {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .task-item {
+  text-align: right;
+}
+
+[dir="rtl"] .task-metadata {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .delete {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* Add language selector styles */
+.header-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.lang-select {
+  background: var(--background-dark);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.lang-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* RTL support for existing elements */
+[dir="rtl"] .app-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .theme-toggle {
+  margin-right: 10px;
+  margin-left: 0;
+}
+
+/* Adjust font for Arabic text */
+[dir="rtl"] body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

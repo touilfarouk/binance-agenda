@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Task Manager Pro</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- Templates -->
+  <template id="task-template">
+    <div class="task-item">
+      <input type="checkbox">
+      <div class="task-text"></div>
+      <div class="task-metadata">
+        <span class="due-date"></span>
+        <div class="tags"></div>
+        <span class="priority"></span>
+      </div>
+      <button class="delete">×</button>
+    </div>
+  </template>
+
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>
