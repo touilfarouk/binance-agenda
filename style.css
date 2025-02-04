@@ -371,3 +371,178 @@ button:hover {
 [dir="rtl"] body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* Add these styles to your existing CSS */
+
+.agenda {
+  background: var(--background-light);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.agenda-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.weekday {
+  text-align: center;
+  font-weight: 600;
+  padding: 8px;
+  color: var(--text-secondary);
+}
+
+.day {
+  position: relative;
+  padding: 8px;
+  text-align: center;
+  background: var(--background-dark);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.day:hover {
+  background: var(--primary-color);
+  color: var(--background-dark);
+}
+
+.day.selected {
+  background: var(--primary-color);
+  color: var(--background-dark);
+  font-weight: 600;
+}
+
+.day.has-events {
+  font-weight: 600;
+}
+
+.event-indicator {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--primary-color);
+}
+
+.events-list {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.event {
+  background: var(--background-dark);
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.event.completed {
+  opacity: 0.7;
+}
+
+.event-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.event-time {
+  font-size: 0.9em;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.event-description {
+  font-size: 0.9em;
+  color: var(--text-secondary);
+}
+
+.add-event {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.event-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.event-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.delete-event {
+  margin-left: auto;
+  background: transparent;
+  color: var(--danger);
+  border: none;
+  padding: 4px 8px;
+}
+
+.delete-event:hover {
+  background: var(--danger);
+  color: white;
+}
+
+.no-events {
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+  padding: 20px;
+}
+
+/* Add to your existing CSS */
+.upgrade-prompt {
+  margin-top: 20px;
+  padding: 20px;
+  background: var(--background-light);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.premium-feature {
+  text-align: center;
+  padding: 20px;
+}
+
+.premium-feature h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.premium-feature p {
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.upgrade-button {
+  background: var(--primary-color);
+  color: var(--background-dark);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.upgrade-button:hover {
+  background: #dba50a;
+  transform: translateY(-2px);
+}

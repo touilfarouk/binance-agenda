@@ -4,6 +4,7 @@
  * Enhanced Task Management System View
  */
 import { languages } from './languages.js';
+import { config } from './config.js';
 
 class View {
   static #THEME_ICONS = {
@@ -30,7 +31,7 @@ class View {
     this.#initializeLanguage();
   }
 
-  #initializeElements() {
+  async #initializeElements() {
     // Main containers
     this.#elements.app = this.#getElement('#root');
     
@@ -104,11 +105,43 @@ class View {
     
     this.#elements.form.append(inputGroup);
     
-    // Update the main append to include header
+    // Conditionally initialize agenda
+    if (config.features.agenda) {
+      try {
+        const { default: Agenda } = await import('./Agenda.js');
+        this.#elements.agendaContainer = this.#createElement('div', 'agenda-container');
+        this.#elements.app.append(this.#elements.agendaContainer);
+        
+        new Agenda(this.#elements.agendaContainer, events => {
+          console.log('Agenda events updated:', events);
+        });
+      } catch (error) {
+        console.error('Failed to load Agenda module:', error);
+      }
+    } else {
+      // Optional: Add upgrade prompt
+      const upgradePrompt = this.#createElement('div', 'upgrade-prompt');
+      upgradePrompt.innerHTML = `
+        <div class="premium-feature">
+          <h3>📅 Upgrade to Premium</h3>
+          <p>Get access to our Calendar feature and more!</p>
+          <button class="upgrade-button">Upgrade Now</button>
+        </div>
+      `;
+      this.#elements.app.append(upgradePrompt);
+
+      // Add upgrade button handler
+      upgradePrompt.querySelector('.upgrade-button').addEventListener('click', () => {
+        this.#handleUpgradeClick();
+      });
+    }
+
+    // Update the main append to include header, form, task list, and agenda
     this.#elements.app.append(
       this.#elements.header,
       this.#elements.form,
-      this.#elements.taskList
+      this.#elements.taskList,
+      this.#elements.agendaContainer
     );
   }
 
@@ -288,6 +321,12 @@ class View {
         handler(id, text);
       }
     });
+  }
+
+  #handleUpgradeClick() {
+    // Implement your payment/upgrade flow here
+    console.log('User clicked upgrade button');
+    // Example: window.location.href = '/upgrade';
   }
 }
 
